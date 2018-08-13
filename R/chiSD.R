@@ -13,6 +13,21 @@ chiSD <- function(sdata,markers,profile,rt,dt,d,r) {
 print(getwd(),quote=F);
 
 sData <- read.delim(sdata$datapath);
+
+coherent_input <- function(any_input) {
+  if(ncol(any_input)<7 || nrow(any_input)<1) {
+    return(paste("Cannot read ",deparse(substitute(any_input)),sep=""))
+  }
+  return(NULL)
+}
+
+ci <- c(coherent_input(sData))
+ci_r <- ci[which(!is.null(ci))]
+
+if(!is.null(ci_r)) {
+  return(ci_r)
+}
+
 s = sData[grep("[^[:alpha:]]",sData[,4]),c(3:4,7)]; #clean up the raw data
 s = droplevels(s);
 s$Allele = as.factor(s$Allele);

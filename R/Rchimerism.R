@@ -18,7 +18,10 @@
 #' @importFrom shiny h5
 #' @importFrom DT renderDataTable
 #' @importFrom DT datatable
+#' @importFrom tools file_ext
 #' @importFrom shiny reactive
+#' @importFrom shiny validate
+#' @importFrom shiny need
 #' @importFrom shiny downloadHandler
 #' @importFrom shiny runApp
 #' @importFrom shiny stopApp
@@ -42,9 +45,8 @@ ui <- shiny::shinyUI({
   shiny::fluidRow(
     shiny::column(3,
        shiny::fileInput("markers", label = "Choose Marker File Input",
-                 accept=c("text/csv",
-                          "text/comma-separated-values,text/plain",
-                          ".csv", ".tsv")
+                 accept=c("csv",
+                          ".csv")
        ),
       shiny::fileInput("ddata", label = "Choose Donor Data Input",
                 accept=c("text/csv",
@@ -151,13 +153,55 @@ server <- function(input, output, session) {
     #assign("rdata",input$rdata,inherits=TRUE)
     #assign("sdata",input$sdata,inherits=TRUE)
 
-    if (is.null(input$markers)||is.null(input$ddata) || is.null(input$rdata)
-        || is.null(input$sdata))
-      return(NULL)
+
+    bad_input <- function(input_file,ext) {
+      if (is.null(input_file)) {
+        showModal(modalDialog(title=paste("Missing input")))
+        return(FALSE)
+      } else if (ext != tools::file_ext(input_file$datapath)){
+        showModal(modalDialog(title=paste("Wrong File Extension for ","'",input_file[1],"'",
+                                          ", requires '.", ext,"'", sep="")))
+        return(FALSE)
+      }
+      else {
+        return(NULL)
+      }
+    }
+
+    check_input <- function(input_file,ext) {
+      shiny::validate(
+        #shiny::need(!is.null(input_file),"Missing input")
+        bad_input(input_file,ext)
+
+      )
+
+    }
+
+
+    check_input(input$markers,"csv")
+    check_input(input$ddata,"txt")
+    check_input(input$rdata,"txt")
+    check_input(input$sdata,"txt")
 
     markers_csv <- strsplit(readLines(input$markers$datapath), ",")
     markers <- markers_csv[[1]]
     #markers = c('D3S1358','TH01','D21S11','D18S51','Penta E','D5S818','D13S317','D7S820','D16S539','CSF1PO','Penta D','vWA','D8S1179','TPOX','FGA')
+
+    incoherent_input <- function(input){
+      if(is.character(input)) {
+        showModal(modalDialog(
+          title = input
+        ))
+        return(FALSE)
+      } else {
+        return(NULL)
+      }
+    }
+    is_coherent_input <- function(any_output) {
+      shiny::validate(
+        incoherent_input(any_output)
+      )
+    }
 
 
     check_sample_data <- function(any_chi_output) {
@@ -168,19 +212,23 @@ server <- function(input, output, session) {
         )
         )
       }
-      validate(
-        need(length(any_chi_output)!=3, "Sample Data Format Error")
+      shiny::validate(
+        shiny::need(length(any_chi_output)!=3, "Sample Data Format Error")
       )
     }
 
+
+
     if (input$donor_type == 2) {
       assign("d2data",input$d2data,inherits=TRUE)
-      if (is.null(d2data))
-        return(NULL)
+      check_input(input$d2data,"txt")
 
       #source("R/locDD.R")
       #source("R/chiDD.R")
+
       loc_dd_output <- locDD(input$ddata,input$d2data,input$rdata,markers)
+
+      is_coherent_input(loc_dd_output)
       #markers,profile,ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r
       #markers <- loc_dd_output[[1]]
       profile <- loc_dd_output[[2]]
@@ -201,6 +249,7 @@ server <- function(input, output, session) {
       chi_dd_output <-  chiDD(input$sdata,markers,profile,
                              ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r)
 
+      is_coherent_input(chi_dd_output)
 
       #browser()
       check_sample_data(chi_dd_output)
@@ -214,6 +263,9 @@ server <- function(input, output, session) {
 #      source("R/chiSD.R")
 
       loc_sd_output <- locSD(input$ddata,input$rdata,markers)
+    #browser()
+      is_coherent_input(loc_sd_output)
+
 
       #markers <- loc_sd_output[[1]]
       profile <- loc_sd_output[[2]]
@@ -227,6 +279,7 @@ server <- function(input, output, session) {
 #
 
       chi_sd_output <- chiSD(input$sdata,markers,profile,rt,dt,d,r)
+      is_coherent_input(chi_sd_output)
       check_sample_data(chi_sd_output)
 
       results <- chi_sd_output[[1]]

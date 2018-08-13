@@ -11,6 +11,22 @@ chiDD <- function(sdata,markers,profile,ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r) {
 print(getwd(),quote=F);
 
 sData <- read.delim(sdata$datapath);
+
+coherent_input <- function(any_input) {
+  if(ncol(any_input)<7 || nrow(any_input)<1) {
+    return(paste("Cannot read ",deparse(substitute(any_input)),sep=""))
+  }
+  return(NULL)
+}
+
+ci <- c(coherent_input(sData))
+ci_r <- ci[which(!is.null(ci))]
+
+if(!is.null(ci_r)) {
+  return(ci_r)
+}
+
+
 s = sData[grep("[^[:alpha:]]",sData[,4]),c(3:4,7)]; #clean up the raw data
 s = droplevels(s);
 s$Allele = as.factor(s$Allele);
@@ -95,7 +111,7 @@ colnames(results) = c('Donor_1%', 'Donor_1%_Mean','Donor_2%', 'Donor_2%_Mean','R
 sm = cbind(st,sn);
 colnames(sm)[length(colnames(sm))] = 'Sum';
 
-write.table(results,file='results.xls',sep="\t",col.names=FALSE);
+#write.table(results,file='results.xls',sep="\t",col.names=FALSE);
 
 print("Sample Allele Matrix", quote = F);
 print(sm);

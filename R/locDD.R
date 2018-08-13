@@ -17,6 +17,21 @@ d1Data <- read.delim(ddata$datapath)
 d2Data <- read.delim(d2data$datapath)
 rData <- read.delim(rdata$datapath)
 
+coherent_input <- function(any_input) {
+  if(ncol(any_input)<7 || nrow(any_input)<1) {
+    return(paste("Cannot read ",deparse(substitute(any_input)),sep=""))
+  }
+  return(NULL)
+}
+
+ci <- c(coherent_input(d1Data),coherent_input(d2Data),coherent_input(rData))
+ci_r <- ci[which(!is.null(ci))]
+
+if(!is.null(ci_r)) {
+  return(ci_r)
+}
+
+
 #clean up the raw data (OL, X, '')
 r = rData[grep("[^[:alpha:]]",rData[,4]),c(3:4,6)];
 d1 = d1Data[grep("[^[:alpha:]]",d1Data[,4]),c(3:4,6)];
@@ -41,6 +56,18 @@ r[,4] = 'r';
 d1[,4] = 'd1';
 d2[,4] = 'd2';
 rd = rbind(r,d1,d2);
+
+#Compare rd with markers, end program if discrepancy
+xtra_in_markers <- setdiff(markers,rd[,1])
+defic_in_markers <- setdiff(rd[,1],markers)
+if (xtra_in_markers != character(0)) {
+  return(paste("'",xtra_in_markers,"'"," from markers not found in input data",
+               sep = ""))
+} else if (defic_in_markers != character(0)) {
+  return(paste("'",defic_in_markers,"'"," from input not found in markers",
+               sep = ""))
+}
+
 trd = table(rd[,c(1,2,4)]);
 rt = trd[,,'r'];
 rt = rt[markers,];
