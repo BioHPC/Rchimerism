@@ -60,10 +60,10 @@ rd = rbind(r,d1,d2);
 #Compare rd with markers, end program if discrepancy
 xtra_in_markers <- setdiff(markers,rd[,1])
 defic_in_markers <- setdiff(rd[,1],markers)
-if (xtra_in_markers != character(0)) {
+if (xtra_in_markers != 0) {
   return(paste("'",xtra_in_markers,"'"," from markers not found in input data",
                sep = ""))
-} else if (defic_in_markers != character(0)) {
+} else if (defic_in_markers != 0) {
   return(paste("'",defic_in_markers,"'"," from input not found in markers",
                sep = ""))
 }
