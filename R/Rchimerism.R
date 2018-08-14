@@ -418,9 +418,9 @@ server <- function(input, output, session) {
       output$dd_check_file.txt <- return_txt()
     }
 
-    session$onSessionEnded(shiny::stopApp)
 
   })
+  session$onSessionEnded(shiny::stopApp)
 
 }
 
