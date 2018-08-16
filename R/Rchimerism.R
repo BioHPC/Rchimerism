@@ -229,6 +229,11 @@ server <- function(input, output, session) {
       loc_dd_output <- locDD(input$ddata,input$d2data,input$rdata,markers)
 
       is_coherent_input(loc_dd_output)
+
+#      dd_vars <- c("profile","ru","rt","rnn","d1nn","d2nn","d1u","d2u","d1t","d2t","r","d1m","d2m","rm")
+#      for (i in 1:length(dd_vars)) {
+#        assign(dd_vars[i],loc_dd_output[[i]],inherits=TRUE)
+      }
       #markers,profile,ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r
       #markers <- loc_dd_output[[1]]
       profile <- loc_dd_output[[2]]
