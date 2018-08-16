@@ -230,7 +230,7 @@ server <- function(input, output, session) {
 
       is_coherent_input(loc_dd_output)
 
-      }
+
       #markers,profile,ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r
       #markers <- loc_dd_output[[1]]
       profile <- loc_dd_output[[2]]
