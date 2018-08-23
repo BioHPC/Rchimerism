@@ -2,10 +2,13 @@ Package: Rchimerism
 Type: Package
 Title: Interactive R Package for Automation of Chimerism Test Data Analysis
 Version: 0.1.0
-Author: Who wrote it
+Imports: shiny, DT
+Authors@R: c(person("Zohair Siddiqui",email="zohair.siddiqui@slu.edu",role=c("aut",
+  "cre")),person("Tae-Hyuk (Ted) Ahn",email="ted.ahn@slu.edu",role="aut"),
+  person("Huazhang Guo",email="huazhang.guo@health.slu.edu",role="aut"))
 Maintainer: Zohair Siddiqui <zohair.siddiqui@slu.edu>
 Description: Tool used to automate a chimerism test and visualize data matrices
-License: What license is it under?
+License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
