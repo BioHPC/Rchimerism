@@ -147,13 +147,14 @@ ui <- shiny::shinyUI({
 # Define server logic required to draw a histogram
 server <- function(input, output, session) {
 
+  #"Read input data" button is pushed
   observeEvent(input$run_locSD_button, {
 
     #assign("ddata",input$ddata,inherits=TRUE)
     #assign("rdata",input$rdata,inherits=TRUE)
     #assign("sdata",input$sdata,inherits=TRUE)
 
-
+    #Displays error dialog for invalid input file extension
     bad_input <- function(input_file,ext) {
       if (is.null(input_file)) {
         showModal(modalDialog(title=paste("Missing input")))
@@ -167,6 +168,7 @@ server <- function(input, output, session) {
         return(NULL)
       }
     }
+
 
     check_input <- function(input_file,ext) {
       shiny::validate(
@@ -187,6 +189,7 @@ server <- function(input, output, session) {
     markers <- markers_csv[[1]]
     #markers = c('D3S1358','TH01','D21S11','D18S51','Penta E','D5S818','D13S317','D7S820','D16S539','CSF1PO','Penta D','vWA','D8S1179','TPOX','FGA')
 
+    #Checks for error string output from loc/chi.R programs
     incoherent_input <- function(input){
       if(is.character(input)) {
         showModal(modalDialog(
@@ -203,7 +206,7 @@ server <- function(input, output, session) {
       )
     }
 
-
+    #Handles noisy sample data, displays false call table from chi.R programs
     check_sample_data <- function(any_chi_output) {
       if (length(any_chi_output)==3) {
         showModal(modalDialog(
@@ -218,7 +221,7 @@ server <- function(input, output, session) {
     }
 
 
-
+    #Double donor button was pressed
     if (input$donor_type == 2) {
       assign("d2data",input$d2data,inherits=TRUE)
       check_input(input$d2data,"txt")
@@ -233,6 +236,8 @@ server <- function(input, output, session) {
 
       #markers,profile,ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r
       #markers <- loc_dd_output[[1]]
+
+      #Variables from loc.R needed by chi.R and/or Rchimerism
       profile <- loc_dd_output[[2]]
       ru <- loc_dd_output[[3]]
       rt <- loc_dd_output[[4]]
@@ -253,19 +258,20 @@ server <- function(input, output, session) {
 
       is_coherent_input(chi_dd_output)
 
-      #browser()
+
       check_sample_data(chi_dd_output)
 
       results <- chi_dd_output[[1]]
       sm <- chi_dd_output[[2]]
 
+      #Dealing with Single Donor
     } else {
 
 #      source("R/locSD.R")
 #      source("R/chiSD.R")
 
       loc_sd_output <- locSD(input$ddata,input$rdata,markers)
-    #browser()
+
       is_coherent_input(loc_sd_output)
 
 
@@ -289,12 +295,8 @@ server <- function(input, output, session) {
     }
 
 
-    #ddata<<-input$ddata
-    #rdata<<-input$rdata
 
-    #ddata = input$ddata
-    #rdata = input$rdata
-
+    #Dealing with Single Donor
     if (input$donor_type == 1) {
 
 
@@ -306,6 +308,7 @@ server <- function(input, output, session) {
                                                                 searching = FALSE,
                                                                 lengthChange=FALSE))
       })
+      #Double Donor case
     } else {
 
       printed_result <- results[-nrow(results),c(1,3,5,7)]
@@ -382,8 +385,6 @@ server <- function(input, output, session) {
 
     return_txt <- function() {
      out_txt <- shiny::downloadHandler(
-      ##currently R shiny does not default to filename
-      ##when ran in RStudio browser
       filename = function(){"check.txt"},
       content = function(file) {
 

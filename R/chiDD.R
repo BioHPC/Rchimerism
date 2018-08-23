@@ -12,6 +12,7 @@ print(getwd(),quote=F);
 
 sData <- read.delim(sdata$datapath);
 
+#Function to handle invalid data text files
 coherent_input <- function(any_input) {
   if(ncol(any_input)<7 || nrow(any_input)<1) {
     return(paste("Cannot read ",deparse(substitute(any_input)),sep=""))
@@ -39,6 +40,8 @@ st[,] = 0;
 #print("The following alleles are possible false calls by ABI GeneAnalyzer",quote = F)
 #print(s[!(s[,2] %in% colnames(st)),]);
 #browser()
+
+#Handles noisy sample data, outputs table of possible false calls
 if (nrow(s[!(s[,2] %in% colnames(st)),]) != 0) {
   false_calls <- s[!(s[,2] %in% colnames(st)),]
   return(false_calls)

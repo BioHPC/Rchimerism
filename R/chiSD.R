@@ -14,6 +14,7 @@ print(getwd(),quote=F);
 
 sData <- read.delim(sdata$datapath);
 
+#Function to handle invalid data text files
 coherent_input <- function(any_input) {
   if(ncol(any_input)<7 || nrow(any_input)<1) {
     return(paste("Cannot read ",deparse(substitute(any_input)),sep=""))
@@ -44,6 +45,7 @@ print(s[!(s[,2] %in% colnames(st)),]);
 #print("Receipient Allele Matrix", quote = F);
 #print(rm);
 
+#Handles noisy sample data, outputs table of possible false calls
 st[as.matrix(s[,1:2])] = 1;
 st[(dt+rt)==0 & st!=0]= 999; # the alleles not in donor or recipient
 sa = rt;

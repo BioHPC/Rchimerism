@@ -14,7 +14,7 @@ locSD <- function(ddata,rdata,markers) {
 dData <- read.delim(ddata$datapath)
 rData <- read.delim(rdata$datapath)
 
-
+#Function to handle invalid data text files
 coherent_input <- function(any_input) {
   if(ncol(any_input)<7 || nrow(any_input)<1) {
     return(paste("Cannot read ",deparse(substitute(any_input)),sep=""))
