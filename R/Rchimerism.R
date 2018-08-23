@@ -333,12 +333,17 @@ server <- function(input, output, session) {
       }
 
 
-    matrix_output <- function(output_matrix,internal_matrix,rcol) {
+    matrix_output <- function(output_matrix,internal_matrix,rcol,srch) {
+      if (missing(srch)) {
+        srch = ""
+      }
       output_matrix <- DT::renderDataTable({
         DT::datatable(internal_matrix,
                   rownames = TRUE, extensions = "FixedColumns",
                   options = list(pageLength = 5, scrollX = TRUE,
-                                 fixedColumns = list(leftColumns = 1, rightColumns=rcol)))
+                                 fixedColumns = list(leftColumns = 1, rightColumns=rcol),
+                                 autoWidth = TRUE, search = list(search=srch)
+                                 ))
       })
       return(output_matrix)
 
@@ -348,25 +353,31 @@ server <- function(input, output, session) {
       dm_minus_profile_col <- dm[,-ncol(dm)]
       output$d_matrix <-  matrix_output(output$d_matrix,dm_minus_profile_col,1)
       output$r_matrix <-  matrix_output(output$r_matrix,rm,1)
-      output$s_matrix <- matrix_output(output$s_matrix,sm,1)
+
+      #Warning for checksum data generated
+      if(999 %in% sm) {
+        output$s_matrix <- matrix_output(output$r_dd_matrix,sm,1,"999")
+        showModal(modalDialog("Clear '999' from Sample Matrix search box to remove filter",
+                              title = "Found '999' value(s) in Sample Allele Matrix, review sample data"
+        ))
+      } else {
+        output$s_matrix <- matrix_output(output$r_dd_matrix,sm,1)
+      }
     }
     else {
       output$d1_matrix <-  matrix_output(output$d1_matrix,d1m,3)
       output$d2_matrix <-  matrix_output(output$d2_matrix,d2m,3)
       output$r_dd_matrix <- matrix_output(output$r_dd_matrix,rm,3)
-      output$s_dd_matrix <- matrix_output(output$r_dd_matrix,sm,1)
+
+      if(999 %in% sm) {
+        output$s_dd_matrix <- matrix_output(output$r_dd_matrix,sm,1,"999")
+        showModal(modalDialog("Clear '999' from Sample Matrix search box to remove filter",
+                              title = "Found '999' value(s) in Sample Allele Matrix, review sample data"
+        ))
+      } else {
+        output$s_dd_matrix <- matrix_output(output$r_dd_matrix,sm,1)
+      }
     }
-
-
-
-
-
-#    output$d_matrix <- renderDataTable({
-#      datatable(dm[,-ncol(dm)],
-#        rownames = TRUE, extensions = "FixedColumns",
-#        options = list(pageLength = 5, scrollX = TRUE,
-#        fixedColumns = list(leftColumns = 1, rightColumns=1)))
-#    })
 
 
 
