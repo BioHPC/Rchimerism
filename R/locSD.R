@@ -1,10 +1,15 @@
-#############################################
-# Decide informative loci for single donor
-# Input: ddata.txt; rdata.txt
-# Output: rcode.profile; rcode.markers; rcode.donor; rcode.recipient;
-#############################################
 
 
+#' Rchimerism locSD
+#'
+#' An internal function to determine informative loci for a single donor
+#'
+#'
+#' @param ddata Donor data input text file
+#' @param rdata Recipient data input text file
+#' @param markers List of locus markers
+#'
+#' @return Internal variables used by chiSD.R
 
 locSD <- function(ddata,rdata,markers) {
 #markers = c('D3S1358','TH01','D21S11','D18S51','Penta E','D5S818','D13S317','D7S820','D16S539','CSF1PO','Penta D','vWA','D8S1179','TPOX','FGA');

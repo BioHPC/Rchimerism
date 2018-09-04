@@ -1,8 +1,22 @@
+
+
+#' Rchimerism locDD
+#'
+#' An internal function to determine informative loci for double donor cases
+#'
+#'
+#' @param donor1_data Donor 1 data input text file
+#' @param donor2_data Donor 2 data input text file
+#' @param recipient_data Recipient data input text file
+#' @param markers List of locus markers
+#'
+#'
+#' @return Internal variables used by chiDD.R
+
+# Output: profile,ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r,d1m,d2m,rm
 #############################################
-# Decide informative loci for double donor
-# Input: ddata.txt; rdata.txt
-# Output: rcode.profile; rcode.markers; rcode.donor; rcode.recipient;
-#############################################
+
+
 
 #markers = c('D3S1358','TH01','D21S11','D18S51','Penta E','D5S818','D13S317','D7S820','D16S539','CSF1PO','Penta D','vWA','D8S1179','TPOX','FGA');
 locDD <- function(donor1_data, donor2_data,recipient_data,markers) {

@@ -1,9 +1,16 @@
-##############################################################
-# Double Donor
-# Based on the informative alleles, calculate donor proportion
-# Input: rcode.profile; rcode.markers; sdata.txt
-# Output: results.xls
-##############################################################
+
+#' Rchimerism chiDD
+#'
+#' An internal function to determine donor percentages for a single donor
+#'
+#'
+#' @param sdata Sample data input text file
+#' @param markers List of locus markers
+#' @param profile,ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r Internal variables for matrix operations
+#'
+#' @return A data frame with donor percentage results, and sample allele matrix
+#'
+#'
 
 
 #load('locusDD.RData'); #load the previous workplace (r, d, markers, profile)

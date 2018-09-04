@@ -1,6 +1,13 @@
 
 
 #' Rchimerism
+#'
+#' Use Rchimerism through the shiny interface
+#'
+#' This function allows the user to input data files
+#' and view the chimerism percentages along with the input data matrices
+#' through the browser interface, with the options to download the results
+#'
 #' @name Rchimerism
 #' @importFrom shiny fluidPage
 #' @importFrom shiny titlePanel
@@ -27,6 +34,8 @@
 #' @importFrom shiny stopApp
 #' @importFrom shiny shinyApp
 #' @importFrom shiny shinyUI
+#'
+#' @return Returns nothing
 
 #' @export
 
