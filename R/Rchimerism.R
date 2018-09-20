@@ -87,13 +87,24 @@ ui <- shiny::shinyUI({
     ),
     shiny::conditionalPanel("input.donor_type == 1",
 
-    shiny::column(3, shiny::h4("Final Results"),
+    shiny::column(3, offset=1, shiny::h4("Final Results"),
       shiny::br(),
       shiny::fluidRow(DT::dataTableOutput("results_table"))
           ),
-    shiny::column(2, offset = 1, shiny::h4("Donor% Mean"),
+    shiny::column(2, offset = 1, shiny::br(),
+           shiny::br(),
+           shiny::br(),
+           shiny::br(),
+           shiny::strong("Donor% Mean"),
            shiny::br(),
            shiny::fluidRow(shiny::verbatimTextOutput("donor_p_mean")),
+           shiny::br(),
+           shiny::br(),
+           shiny::h5("Donor% SD"),
+           shiny::fluidRow(shiny::verbatimTextOutput("donor_p_SD")),
+           shiny::h5("Donor% CV"),
+           shiny::fluidRow(shiny::verbatimTextOutput("donor_p_CV")),
+           shiny::br(),
            shiny::fluidRow(shiny::downloadButton("check_file.txt", "Download Check File")),
            shiny::fluidRow(shiny::downloadButton("results.xls","Download Results Excel File"))
            )
@@ -104,30 +115,65 @@ ui <- shiny::shinyUI({
                             shiny::fluidRow(DT::dataTableOutput("dd_results_table")),
                             shiny::fluidRow(shiny::h4("% Mean"), shiny::br(),
 
-                                      shiny::column(7,
-                                      shiny::fluidRow(
-                                        shiny::column(4,shiny::h5("Donor 1 % Mean")),
-                                        shiny::column(6,shiny::verbatimTextOutput("donor_1_p_mean"))
+                                      shiny::column(4,
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::strong("Donor 1 % Mean")),
+                                          shiny::column(6,shiny::verbatimTextOutput("donor_1_p_mean"))
+                                          ),
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::strong("Donor 2 % Mean")),
+                                          shiny::column(6,shiny::verbatimTextOutput("donor_2_p_mean"))
+                                          ),
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::strong("Recipient % Mean")),
+                                          shiny::column(6,shiny::verbatimTextOutput("recipient_p_mean"))
+                                          )
+
+                                      ),
+                                      shiny::column(4,
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::h5("Donor 1 % SD")),
+                                          shiny::column(6,shiny::verbatimTextOutput("donor_1_SD"))
                                         ),
-                                      shiny::fluidRow(
-                                        shiny::column(4,shiny::h5("Donor 2 % Mean")),
-                                        shiny::column(6,shiny::verbatimTextOutput("donor_2_p_mean"))
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::h5("Donor 2 % SD")),
+                                          shiny::column(6,shiny::verbatimTextOutput("donor_2_SD"))
                                         ),
-                                      shiny::fluidRow(
-                                        shiny::column(4,shiny::h5("Recipient % Mean")),
-                                        shiny::column(6,shiny::verbatimTextOutput("recipient_p_mean"))
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::h5("Recipient % SD")),
+                                          shiny::column(6,shiny::verbatimTextOutput("recipient_SD"))
                                         )
 
                                       ),
-                                      shiny::column(3, offset = 1,
-                                           shiny::fluidRow(shiny::downloadButton("dd_check_file.txt",
-                                                                   "Download Check File")),
-                                           shiny::fluidRow(shiny::downloadButton("dd_results.xls",
-                                                                   "Download Results
-                                                                   Excel File")))
+                                      shiny::column(4,
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::h5("Donor 1 % CV")),
+                                          shiny::column(6,shiny::verbatimTextOutput("donor_1_CV"))
+                                        ),
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::h5("Donor 2 % CV")),
+                                          shiny::column(6,shiny::verbatimTextOutput("donor_2_CV"))
+                                        ),
+                                        shiny::fluidRow(
+                                          shiny::column(4,shiny::h5("Recipient % CV")),
+                                          shiny::column(6,shiny::verbatimTextOutput("recipient_CV",placeholder = TRUE))
+                                        )
+
+                                      )
 
                             )
-                     )
+
+                     ),
+                     shiny::column(2, offset = 1,
+                                   shiny::br(),
+                                   shiny::br(),
+                                   shiny::br(),
+                                   shiny::br(),
+                                   shiny::fluidRow(shiny::downloadButton("dd_check_file.txt",
+                                                                         "Download Check File")),
+                                   shiny::fluidRow(shiny::downloadButton("dd_results.xls",
+                                                                         "Download Results
+                                                                                Excel File")))
                 )
   ),
   shiny::conditionalPanel("input.donor_type ==1",
@@ -320,7 +366,7 @@ server <- function(input, output, session) {
       #Double Donor case
     } else {
 
-      printed_result <- results[-nrow(results),c(1,3,5,7)]
+      printed_result <- results[-nrow(results),c(1,5,9,13)]
       printed_result <- printed_result[,1:4]*100
       output$dd_results_table <- DT::renderDataTable({
         DT::datatable(printed_result, rownames = TRUE, options = list(pageLength = 5,
@@ -329,16 +375,29 @@ server <- function(input, output, session) {
       })
 
     }
-    p_mean_output <- function(output_txt,num) {
+#    p_output <- function(output_txt,num) {
+#      output_txt <- renderText(max(results[-nrow(results),num], na.rm = TRUE)*100)
+#      return(output_txt)
+#    }
+    p_output <- function(num) {
       output_txt <- renderText(max(results[-nrow(results),num], na.rm = TRUE)*100)
       return(output_txt)
     }
     if (input$donor_type == 1) {
       output$donor_p_mean <- renderText(max(results[,3], na.rm = TRUE)*100)
+      output$donor_p_SD <- renderText(max(results[,4], na.rm = TRUE)*100)
+      output$donor_p_CV <- renderText(max(results[,5], na.rm = TRUE)*100)
     } else {
-        output$donor_1_p_mean <- p_mean_output(output$donor_1_p_mean,2)
-        output$donor_2_p_mean <- p_mean_output(output$donor_2_p_mean,4)
-        output$recipient_p_mean <- p_mean_output(output$recipient_p_mean,6)
+        output$donor_1_p_mean <- p_output(2)
+        output$donor_2_p_mean <- p_output(6)
+        output$recipient_p_mean <- p_output(10)
+        output$donor_1_SD <- p_output(3)
+        output$donor_2_SD <- p_output(7)
+        output$recipient_SD <- p_output(11)
+        output$donor_1_CV <- p_output(4)
+        output$donor_2_CV <- p_output(8)
+        ifelse(!max(results[,12]), output$recipient_CV <- renderText(NaN),
+               output$recipient_CV <-  renderText(max(results[,12])*100))
       }
 
 

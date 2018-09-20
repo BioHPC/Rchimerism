@@ -97,13 +97,23 @@ srMean = sr;
 srMean[!l] = NA;
 srMean[l] = mean(srMean,na.rm=T);
 
+srSD = sr;
+srSD[!l] = NA;
+srSD[l] = sd(sr,na.rm=T);
+srCV = srSD/srMean;
+
 sd1 = sd1s * d1nn / ss;
 me = mean(sd1,na.rm=T);
 sd = sd(sd1,na.rm=T);
 l = !((abs(sd1-me) > 2*sd)| is.na(sd1)); #non-informative locus or 2 SD locus are excluded
 sd1Mean = sd1;
 sd1Mean[!l] = NA;
-sd1Mean[l] = mean(sd1Mean,na.rm=T);
+sd1Mean[l] = mean(sd1,na.rm=T);
+sd1SD = sd1;
+sd1SD[!l] = NA;
+sd1SD[l] = sd(sd1,na.rm=T);
+sd1CV = sd1SD/sd1Mean;
+
 
 sd2 = sd2s * d2nn / ss;
 me = mean(sd2,na.rm=T);
@@ -112,16 +122,24 @@ l = !((abs(sd2-me) > 2*sd)| is.na(sd2)); #non-informative locus or 2 SD locus ar
 sd2Mean = sd2;
 sd2Mean[!l] = NA;
 sd2Mean[l] = mean(sd2Mean,na.rm=T);
+sd2SD = sd2;
+sd2SD[!l] = NA;
+sd2SD[l] = sd(sd2,na.rm=T);
+sd2CV = sd2SD/sd2Mean;
 
-results = cbind(sd1,sd1Mean,sd2,sd2Mean,sr,srMean,sd1+sd2+sr);
+
+results = cbind(sd1,sd1Mean,sd1SD,sd1CV,sd2,sd2Mean,sd2SD,sd2CV,sr,srMean,srSD,srCV,sd1+sd2+sr);
 results = rbind(results, apply(!is.na(results),2,sum));
-rownames(results)[16] = "Info#";
-colnames(results) = c('Donor_1%', 'Donor_1%_Mean','Donor_2%', 'Donor_2%_Mean','Recipient%', 'Recipient%_Mean',"Sum");
-
+rownames(results)[nrow(results)] = "Info#";
+colnames(results) = c('Donor_1%', 'Donor_1%_Mean','Donor_1%_SD','Donor_1%_CV','Donor_2%',
+                      'Donor_2%_Mean','Donor_2%_SD','Donor_2%_CV','Recipient%', 'Recipient%_Mean',
+                      'Recipient%_SD','Recipient%_CV',"Sum");
 sm = cbind(st,sn);
 colnames(sm)[length(colnames(sm))] = 'Sum';
 
 #write.table(results,file='results.xls',sep="\t",col.names=FALSE);
+
+
 
 print("Sample Allele Matrix", quote = F);
 print(sm);
