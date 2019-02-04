@@ -95,6 +95,8 @@ ui <- shiny::shinyUI({
            shiny::h4(shiny::strong("Donor% Mean")),
            shiny::br(),
            shiny::fluidRow(shiny::strong(shiny::verbatimTextOutput("donor_p_mean"))),
+           shiny::h5("Recipient% Mean"),
+           shiny::fluidRow(shiny::verbatimTextOutput("recip_p_mean")),
            shiny::h5("Donor% SD"),
            shiny::fluidRow(shiny::verbatimTextOutput("donor_p_SD")),
            shiny::h5("Donor% CV"),
@@ -380,6 +382,7 @@ server <- function(input, output, session) {
     }
     if (input$donor_type == 1) {
       output$donor_p_mean <- renderText(max(results[,3], na.rm = TRUE)*100)
+      output$recip_p_mean <- renderText(100-max(results[,3], na.rm = TRUE)*100)
       output$donor_p_SD <- renderText(max(results[,4], na.rm = TRUE)*100)
       output$donor_p_CV <- renderText(max(results[,5], na.rm = TRUE)*100)
     } else {
