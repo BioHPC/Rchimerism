@@ -382,7 +382,7 @@ server <- function(input, output, session) {
     }
     if (input$donor_type == 1) {
       output$donor_p_mean <- renderText(max(results[,3], na.rm = TRUE)*100)
-      output$recip_p_mean <- renderText(100-max(results[,3], na.rm = TRUE)*100)
+      output$recip_p_mean <- renderText(max(results[,6], na.rm = TRUE)*100)
       output$donor_p_SD <- renderText(max(results[,4], na.rm = TRUE)*100)
       output$donor_p_CV <- renderText(max(results[,5], na.rm = TRUE)*100)
     } else {

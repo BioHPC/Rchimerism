@@ -121,7 +121,7 @@ for (m in markers){
 }
 
 #Generate final result data frame
-results = cbind(profile,C,NA,NA,NA);
+results = cbind(profile,C,NA,NA,NA,NA);
 results[,3] = NA;
 me = mean(results[,2],na.rm=T);
 sd = sd(results[,2],na.rm=T);
@@ -129,11 +129,13 @@ l = !((abs(results[,2]-me) > 2*sd)| is.na(results[,2])); #non-informative locus 
 results[l,3]=mean(results[l,2]);
 results[l,4]=sd(results[l,2]);
 results[l,5]=results[l,4]/results[l,3];
+results[l,6]=1-results[l,3];
 colnames(results)[1] = 'Profile';
 colnames(results)[2] = 'Donor%';
 colnames(results)[3] = 'Donor%_Mean';
 colnames(results)[4] = 'Donor%_SD';
 colnames(results)[5] = 'Donor%_CV';
+colnames(results)[6] = 'Recipient%_Mean';
 
 sm = cbind(st,apply(st,1,sum));
 colnames(sm)[length(colnames(sm))] = 'Sum';
