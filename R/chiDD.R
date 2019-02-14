@@ -36,12 +36,14 @@ if(!is.null(ci_r)) {
 
 
 s = sData[grep("[^[:alpha:]]",sData[,4]),c(3:4,7)]; #clean up the raw data
+s = s[s[,1]!='DYS391',] #Remove DYS391 locus on Y chromosome
 s = droplevels(s);
 s$Allele = as.factor(s$Allele);
 
 # Fill in the matrix with alleles
 st = ru;
 st[,] = 0;
+
 
 #check point: any locus present in sample but not in recipient/donors
 #print("The following alleles are possible false calls by ABI GeneAnalyzer",quote = F)
@@ -60,7 +62,6 @@ if (nrow(s[!(s[,2] %in% colnames(st)),]) != 0) {
 #print(d2m);
 #print("Receipient Allele Matrix", quote = F);
 #print(rm);
-
 
 st[as.matrix(s[,1:2])] = 1;
 st[(d1t + d2t + rt) == 0 & st!=0] = 999; # the alleles not in donor or recipient

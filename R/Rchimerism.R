@@ -25,6 +25,8 @@
 #' @importFrom shiny h5
 #' @importFrom DT renderDataTable
 #' @importFrom DT datatable
+#' @importFrom DT formatStyle
+#' @importFrom DT styleEqual
 #' @importFrom tools file_ext
 #' @importFrom shiny reactive
 #' @importFrom shiny validate
@@ -352,24 +354,43 @@ server <- function(input, output, session) {
     if (input$donor_type == 1) {
 
 
-      printed_result <- results[,1:2]
+    #  printed_result <- results[,1:2]
+      printed_result <- results[,1:3]
       printed_result[,1] <- sapply(printed_result[,1],as.character)
       printed_result[,2] <- results[,2]*100
-      output$results_table <- DT::renderDataTable({
-        DT::datatable(printed_result, rownames = TRUE, options = list(pageLength = 5,
-                                                                searching = FALSE,
-                                                                lengthChange=FALSE))
-      })
+#      output$results_table <- DT::renderDataTable({
+      #   DT::datatable(printed_result, rownames = TRUE, options = list(pageLength = 5,
+      #                                                           searching = FALSE,
+      #                                                           lengthChange=FALSE))
+      # })
+      rdt <- DT::datatable(printed_result, rownames = TRUE, options = list(pageLength = 5,
+                                                                  searching = FALSE,
+                                                                  lengthChange=FALSE,
+                                                                  columnDefs = list(list(visible=FALSE, targets= c(3)))))
+
+      #Gray out donor%s not used in donor% mean calcs (non-informative/outlier)
+      frdt <-  DT::formatStyle(rdt, columns = 2, valueColumns = 3, target = "row", color = DT::styleEqual(NA, "gray"))
+      output$results_table <- DT::renderDataTable({ frdt })
       #Double Donor case
     } else {
-
-      printed_result <- results[-nrow(results),c(1,5,9,13)]
-      printed_result <- printed_result[,1:4]*100
-      output$dd_results_table <- DT::renderDataTable({
-        DT::datatable(printed_result, rownames = TRUE, options = list(pageLength = 5,
+      # printed_result <- results[-nrow(results),c(1,5,9,13)]
+      #   output$dd_results_table <- DT::renderDataTable({
+      #   DT::datatable(printed_result, rownames = TRUE, options = list(pageLength = 5,
+      #                                                           searching = FALSE,
+      #                                                           lengthChange=FALSE))
+      # })
+      # # printed_result <- results[-nrow(results),c(1,5,9,13)]
+      dd_printed_result <- results[-nrow(results),c(1,2,5,6,9,10,13)]
+      dd_printed_result <- dd_printed_result[,c(1:7)]*100
+      dd_rdt <-  DT::datatable(dd_printed_result, rownames = TRUE, options = list(pageLength = 5,
                                                                   searching = FALSE,
-                                                                  lengthChange=FALSE))
-      })
+                                                                  lengthChange=FALSE,
+                                                                  columnDefs = list(list(visible=FALSE, targets= c(2,4,6)))
+                                                                  ))
+      #
+      #Gray out donor%s not used in donor% mean calcs (non-informative/outlier)
+      dd_frdt <-  DT::formatStyle(dd_rdt, columns = c(1,3,5), valueColumns = c(2,4,6), color = DT::styleEqual(c(NA), c("gray")))
+      output$dd_results_table <- DT::renderDataTable(dd_frdt)
 
     }
 #    p_output <- function(output_txt,num) {
@@ -377,7 +398,7 @@ server <- function(input, output, session) {
 #      return(output_txt)
 #    }
     p_output <- function(num) {
-      output_txt <- renderText(max(results[-nrow(results),num], na.rm = TRUE)*100)
+      output_txt <- renderText(format(round(max(results[-nrow(results),num], na.rm = TRUE)*100,3)))
       return(output_txt)
     }
     if (input$donor_type == 1) {

@@ -38,6 +38,7 @@ if(!is.null(ci_r)) {
 }
 
 s = sData[grep("[^[:alpha:]]",sData[,4]),c(3:4,7)]; #clean up the raw data
+s = s[s[,1]!='DYS391',] #Remove DYS391 locus on Y chromosome
 s = droplevels(s);
 s$Allele = as.factor(s$Allele);
 st =  rt;

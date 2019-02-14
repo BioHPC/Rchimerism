@@ -53,14 +53,10 @@ r[,4] = 'r';
 d[,4] = 'd';
 rd = rbind(r,d);
 
-#Compare rd with markers, end program if discrepancy
+#Compare rd with markers, end program if user defined markers not in input
 xtra_in_markers <- setdiff(markers,rd[,1])
-defic_in_markers <- setdiff(rd[,1],markers)
 if (length(xtra_in_markers) != 0) {
   return(paste("'",xtra_in_markers,"'"," from markers not found in input data",
-               sep = ""))
-} else if (length(defic_in_markers) != 0) {
-  return(paste("'",defic_in_markers,"'"," from input not found in markers",
                sep = ""))
 }
 
