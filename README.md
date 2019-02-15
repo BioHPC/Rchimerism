@@ -87,5 +87,5 @@ Example single donor and double donor can be found in ./example
 
 * Rchimerism grays out loci not used in calculations. This can be useful for identifying outlier loci.
 
-![figure 8](./figures/Figure_8.png)
+![figure 8](./figures/Figure_8.PNG)
 
