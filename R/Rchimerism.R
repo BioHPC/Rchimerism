@@ -415,8 +415,16 @@ server <- function(input, output, session) {
         output$recipient_SD <- p_output(11)
         output$donor_1_CV <- p_output(4)
         output$donor_2_CV <- p_output(8)
-        ifelse(!max(results[,12]), output$recipient_CV <- renderText(NaN),
-               output$recipient_CV <-  renderText(max(results[,12])*100))
+
+        if (length(na.omit(results[-length(results[,12]),12])) == 0) {
+          output$recipient_CV <- renderText(NaN)
+        }
+        else {
+          output$recipient_CV <- p_output(12)
+        }
+#        ifelse(!max(results[,12]), output$recipient_CV <- renderText(NaN),
+#               output$recipient_CV <-  renderText(max(results[-length(results[,12]),12], na.rm = TRUE)*100))
+
       }
 
 
