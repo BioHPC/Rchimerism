@@ -116,15 +116,15 @@ ui <- shiny::shinyUI({
 
                                       shiny::column(4,
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::strong("Donor_1 % Mean")),
+                                          shiny::column(5,shiny::strong("Donor_1 % Mean")),
                                           shiny::column(6,shiny::verbatimTextOutput("donor_1_p_mean"))
                                           ),
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::strong("Donor_2 % Mean")),
+                                          shiny::column(5,shiny::strong("Donor_2 % Mean")),
                                           shiny::column(6,shiny::verbatimTextOutput("donor_2_p_mean"))
                                           ),
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::strong("Recipient % Mean")),
+                                          shiny::column(5,shiny::strong("Recipient % Mean")),
                                           shiny::column(6,shiny::verbatimTextOutput("recipient_p_mean"))
                                           )
 
