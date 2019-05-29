@@ -116,11 +116,11 @@ ui <- shiny::shinyUI({
 
                                       shiny::column(4,
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::strong("Donor 1 % Mean")),
+                                          shiny::column(4,shiny::strong("Donor_1 % Mean")),
                                           shiny::column(6,shiny::verbatimTextOutput("donor_1_p_mean"))
                                           ),
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::strong("Donor 2 % Mean")),
+                                          shiny::column(4,shiny::strong("Donor_2 % Mean")),
                                           shiny::column(6,shiny::verbatimTextOutput("donor_2_p_mean"))
                                           ),
                                         shiny::fluidRow(
@@ -131,11 +131,11 @@ ui <- shiny::shinyUI({
                                       ),
                                       shiny::column(4,
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::h5("Donor 1 % SD")),
+                                          shiny::column(4,shiny::h5("Donor_1 % SD")),
                                           shiny::column(6,shiny::verbatimTextOutput("donor_1_SD"))
                                         ),
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::h5("Donor 2 % SD")),
+                                          shiny::column(4,shiny::h5("Donor_2 % SD")),
                                           shiny::column(6,shiny::verbatimTextOutput("donor_2_SD"))
                                         ),
                                         shiny::fluidRow(
@@ -146,16 +146,16 @@ ui <- shiny::shinyUI({
                                       ),
                                       shiny::column(4,
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::h5("Donor 1 % CV")),
+                                          shiny::column(4,shiny::h5("Donor_1 % CV")),
                                           shiny::column(6,shiny::verbatimTextOutput("donor_1_CV"))
                                         ),
                                         shiny::fluidRow(
-                                          shiny::column(4,shiny::h5("Donor 2 % CV")),
+                                          shiny::column(4,shiny::h5("Donor_2 % CV")),
                                           shiny::column(6,shiny::verbatimTextOutput("donor_2_CV"))
                                         ),
                                         shiny::fluidRow(
                                           shiny::column(4,shiny::h5("Recipient % CV")),
-                                          shiny::column(6,shiny::verbatimTextOutput("recipient_CV",placeholder = TRUE))
+                                          shiny::column(6,shiny::verbatimTextOutput("recipient_CV"))
                                         )
 
                                       )
