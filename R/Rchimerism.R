@@ -370,7 +370,9 @@ server <- function(input, output, session) {
 
       #Gray out donor%s not used in donor% mean calcs (non-informative/outlier)
       frdt <-  DT::formatStyle(rdt, columns = 2, valueColumns = 3, target = "row", color = DT::styleEqual(NA, "gray"))
-      output$results_table <- DT::renderDataTable({ frdt })
+      #italicize loci column
+      ifrdt <- DT::formatStyle(frdt,columns = 0, fontStyle = 'italic')
+      output$results_table <- DT::renderDataTable({ ifrdt })
       #Double Donor case
     } else {
       # printed_result <- results[-nrow(results),c(1,5,9,13)]
@@ -390,7 +392,10 @@ server <- function(input, output, session) {
       #
       #Gray out donor%s not used in donor% mean calcs (non-informative/outlier)
       dd_frdt <-  DT::formatStyle(dd_rdt, columns = c(1,3,5), valueColumns = c(2,4,6), color = DT::styleEqual(c(NA), c("gray")))
-      output$dd_results_table <- DT::renderDataTable(dd_frdt)
+      #italicize loci column
+      dd_ifrdt <- DT::formatStyle(dd_frdt,columns = 0, fontStyle = 'italic')
+
+      output$dd_results_table <- DT::renderDataTable(dd_ifrdt)
 
     }
 #    p_output <- function(output_txt,num) {
@@ -433,12 +438,12 @@ server <- function(input, output, session) {
         srch = ""
       }
       output_matrix <- DT::renderDataTable({
-        DT::datatable(internal_matrix,
+        DT::formatStyle(DT::datatable(internal_matrix,
                   rownames = TRUE, extensions = "FixedColumns",
                   options = list(pageLength = 5, scrollX = TRUE,
                                  fixedColumns = list(leftColumns = 1, rightColumns=rcol),
                                  autoWidth = TRUE, search = list(search=srch)
-                                 ))
+                                 )), columns = c(0), fontStyle = 'italic')
       })
       return(output_matrix)
 
