@@ -62,37 +62,37 @@ Rchimerism()
 
 
 
-###Select "Double Donor" option to upload a second donor file
+### Select "Double Donor" option to upload a second donor file
 
 ![figure 2](./figures/Figure_2.png)
 
 
-###The 'Final Results' table displays the profile characterization of each allele, along with the overall chimerism percentages.
+### The 'Final Results' table displays the profile characterization of each allele, along with the overall chimerism percentages.
 
 ![figure 3](./figures/Figure_3.png)
 
 
-###Final Results for Double Donor input
+### Final Results for Double Donor input
 
 ![figure 5](./figures/Figure_5.png)
 
-###The input data matrices are available for reference at the bottom of the page.
+### The input data matrices are available for reference at the bottom of the page.
 
 ![figure 4](./figures/Figure_4.png)
 
-###Double Donor input data matrices
+### Double Donor input data matrices
 
 ![figure 6](./figures/Figure_6.png)
 
-###The results and data matrices can be downloaded as a '.txt' file by selecting 'Download Check File'. Additionally, the results table can be downloaded as a '.xls' file. These files are useful for investigating data errors.
+### The results and data matrices can be downloaded as a '.txt' file by selecting 'Download Check File'. Additionally, the results table can be downloaded as a '.xls' file. These files are useful for investigating data errors.
 
 ![figure 7](./figures/Figure_7.png)
 
-###Rchimerism grays out loci not used in calculations. This can be useful for identifying outlier loci.
+### Rchimerism grays out loci not used in calculations. This can be useful for identifying outlier loci.
 
 ![figure 8](./figures/Figure_8.PNG)
 
-#Using Rchimerism Directory Mode
+# Using Rchimerism Directory Mode
 
 The Directory mode is intended for "power users," or technicians/clinicians tackling a large amount of data.
 Directory mode assumes a strict file structure (which would need to be set up) in order to speed up data entry.
@@ -135,7 +135,7 @@ Data files (output files from the ABI machine) should always be named as follows
 * d2data.txt -> pre-transplantation donor 2 of double donor
 * sdata.txt -> post-transplantation chimera data
 
-###Rchimerism chimerism analysis with Directory Mode with single donor input
+### Rchimerism chimerism analysis with Directory Mode with single donor input
 
 ![figure 10](./figures/Figure_10.jpg)
 
