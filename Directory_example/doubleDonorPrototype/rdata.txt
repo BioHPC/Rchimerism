@@ -1,0 +1,76 @@
+Dye/Sample Peak	Sample File Name	Marker	Allele	Size	Height	Area	Data Point	
+"B,1"	xxxxxxxxxxxxxxxxx	D3S1358	OL	101.3	111	1696	1846	
+"B,2"	xxxxxxxxxxxxxxxxx	D3S1358	OL	104.01	299	1907	1869	
+"B,3"	xxxxxxxxxxxxxxxxx	D3S1358	OL	109.87	355	2002	1919	
+"B,4"	xxxxxxxxxxxxxxxxx			124.3	270	1823	2044	
+"B,5"	xxxxxxxxxxxxxxxxx	D3S1358	16	128.46	3335	19764	2081	
+"B,6"	xxxxxxxxxxxxxxxxx	D3S1358	17	132.7	2962	17579	2119	
+"B,7"	xxxxxxxxxxxxxxxxx	D3S1358	OL	150.27	370	2242	2278	
+"B,8"	xxxxxxxxxxxxxxxxx	TH01	5	158.15	371	2921	2350	
+"B,9"	xxxxxxxxxxxxxxxxx	TH01	6	161.84	4912	27398	2384	
+"B,10"	xxxxxxxxxxxxxxxxx	TH01	7	165.84	4660	26041	2421	
+"B,11"	xxxxxxxxxxxxxxxxx			219.18	182	1104	2922	
+"B,12"	xxxxxxxxxxxxxxxxx	D21S11	OL	222.14	422	2384	2950	
+"B,13"	xxxxxxxxxxxxxxxxx	D21S11	30	223.2	2457	15243	2960	
+"B,14"	xxxxxxxxxxxxxxxxx	D21S11	OL	226.17	349	2283	2988	
+"B,15"	xxxxxxxxxxxxxxxxx			239.41	102	623	3113	
+"B,16"	xxxxxxxxxxxxxxxxx	D21S11	35	243.44	2206	14093	3151	
+"B,17"	xxxxxxxxxxxxxxxxx			268.7	223	1479	3390	
+"B,18"	xxxxxxxxxxxxxxxxx	D18S51	OL	284.74	217	2406	3544	
+"B,19"	xxxxxxxxxxxxxxxxx			302.47	115	684	3716	
+"B,20"	xxxxxxxxxxxxxxxxx	D18S51	14	306.18	2207	14641	3752	
+"B,21"	xxxxxxxxxxxxxxxxx			325.1	169	1030	3935	
+"B,22"	xxxxxxxxxxxxxxxxx	D18S51	20	328.88	1874	12781	3971	
+"B,23"	xxxxxxxxxxxxxxxxx	D18S51	OL	349.89	184	1201	4171	
+"B,24"	xxxxxxxxxxxxxxxxx	D18S51	OL	358.14	165	1083	4250	
+"B,25"	xxxxxxxxxxxxxxxxx	Penta E	12	413.13	1453	11094	4770	
+"B,26"	xxxxxxxxxxxxxxxxx	Penta E	14	423.39	1294	9994	4866	
+"G,1"	xxxxxxxxxxxxxxxxx			71.41	117	1375	1591	
+"G,2"	xxxxxxxxxxxxxxxxx			78.22	125	1938	1648	
+"G,3"	xxxxxxxxxxxxxxxxx			105.3	657	10431	1880	
+"G,4"	xxxxxxxxxxxxxxxxx			107.18	746	18980	1896	
+"G,5"	xxxxxxxxxxxxxxxxx			111.63	128	889	1934	
+"G,6"	xxxxxxxxxxxxxxxxx	D5S818	OL	116.17	102	667	1973	
+"G,7"	xxxxxxxxxxxxxxxxx			130.69	213	1851	2101	
+"G,8"	xxxxxxxxxxxxxxxxx	D5S818	12	134.92	3023	18451	2139	
+"G,9"	xxxxxxxxxxxxxxxxx			139.01	218	1514	2176	
+"G,10"	xxxxxxxxxxxxxxxxx	D5S818	14	143.1	2568	15517	2213	
+"G,11"	xxxxxxxxxxxxxxxxx	D5S818	OL	144.21	153	813	2223	
+"G,12"	xxxxxxxxxxxxxxxxx	D5S818	OL	145.2	150	828	2232	
+"G,13"	xxxxxxxxxxxxxxxxx			162.71	114	1017	2392	
+"G,14"	xxxxxxxxxxxxxxxxx	D13S317	OL	178.4	140	1478	2538	
+"G,15"	xxxxxxxxxxxxxxxxx			183.63	343	1978	2587	
+"G,16"	xxxxxxxxxxxxxxxxx	D13S317	11	187.68	6225	36569	2625	
+"G,17"	xxxxxxxxxxxxxxxxx	D13S317	12	191.51	124	881	2661	
+"G,18"	xxxxxxxxxxxxxxxxx	D13S317	OL	192.57	177	1054	2671	
+"G,19"	xxxxxxxxxxxxxxxxx	D13S317	OL	197.56	127	888	2718	
+"G,20"	xxxxxxxxxxxxxxxxx	D13S317	OL	208.59	119	703	2822	
+"G,21"	xxxxxxxxxxxxxxxxx	D7S820	8	220.34	115	970	2933	
+"G,22"	xxxxxxxxxxxxxxxxx	D7S820	OL	222.99	717	6262	2958	
+"G,23"	xxxxxxxxxxxxxxxxx	D7S820	9	224.26	974	19042	2970	
+"G,24"	xxxxxxxxxxxxxxxxx	D7S820	10	228.18	5518	37978	3007	
+"G,25"	xxxxxxxxxxxxxxxxx	D16S539	OL	269.65	105	1130	3399	
+"G,26"	xxxxxxxxxxxxxxxxx			278.94	186	1497	3488	
+"G,27"	xxxxxxxxxxxxxxxxx	D16S539	10	282.98	3691	29462	3527	
+"G,28"	xxxxxxxxxxxxxxxxx	D16S539	11	287.02	3497	26204	3566	
+"G,29"	xxxxxxxxxxxxxxxxx	CSF1PO	7	321.16	3851	26193	3897	
+"G,30"	xxxxxxxxxxxxxxxxx			333.28	168	1074	4013	
+"G,31"	xxxxxxxxxxxxxxxxx	CSF1PO	11	337.38	3376	23276	4052	
+"G,32"	xxxxxxxxxxxxxxxxx	Penta D	10	403.38	2186	16612	4678	
+"G,33"	xxxxxxxxxxxxxxxxx	Penta D	11	408.03	2218	17298	4722	
+"Y,1"	xxxxxxxxxxxxxxxxx	AMEL	X	104.01	2762	16907	1869	
+"Y,2"	xxxxxxxxxxxxxxxxx	AMEL	Y	109.87	3240	19183	1919	
+"Y,3"	xxxxxxxxxxxxxxxxx			116.64	116	646	1977	
+"Y,4"	xxxxxxxxxxxxxxxxx			146.31	236	1333	2242	
+"Y,5"	xxxxxxxxxxxxxxxxx	vWA	17	150.27	3068	17520	2278	
+"Y,6"	xxxxxxxxxxxxxxxxx			154.22	275	1552	2314	
+"Y,7"	xxxxxxxxxxxxxxxxx	vWA	19	158.26	2699	15832	2351	
+"Y,8"	xxxxxxxxxxxxxxxxx			218.23	127	759	2913	
+"Y,9"	xxxxxxxxxxxxxxxxx	D8S1179	12	222.14	3048	18994	2950	
+"Y,10"	xxxxxxxxxxxxxxxxx	D8S1179	13	226.17	2775	16990	2988	
+"Y,11"	xxxxxxxxxxxxxxxxx	TPOX	8	268.7	1953	13669	3390	
+"Y,12"	xxxxxxxxxxxxxxxxx	TPOX	12	284.74	1486	11338	3544	
+"Y,13"	xxxxxxxxxxxxxxxxx			345.68	119	761	4131	
+"Y,14"	xxxxxxxxxxxxxxxxx	FGA	23	349.89	1548	10672	4171	
+"Y,15"	xxxxxxxxxxxxxxxxx			354.07	144	931	4211	
+"Y,16"	xxxxxxxxxxxxxxxxx	FGA	25	358.14	1403	9728	4250	

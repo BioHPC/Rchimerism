@@ -20,7 +20,9 @@ chiSD <- function(sdata,markers,profile,rt,dt,d,r) {
 #load('data/locusSD.RData'); #load the previous workplace (r, d, markers, profile)
 print(getwd(),quote=F);
 
-sData <- read.delim(sdata$datapath);
+#sData <- read.delim(sdata$datapath);
+
+sData <- sdata
 
 #Function to handle invalid data text files
 coherent_input <- function(any_input) {

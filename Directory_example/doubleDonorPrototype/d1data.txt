@@ -1,0 +1,71 @@
+Dye/Sample Peak	Sample File Name	Marker	Allele	Size	Height	Area	Data Point	
+"B,1"	xxxxxxxxxxxxxxxx	D3S1358	OL	100.83	101	1606	1775	
+"B,2"	xxxxxxxxxxxxxxxxx	D3S1358	OL	104.03	598	3381	1802	
+"B,3"	xxxxxxxxxxxxxxxxx			120.23	241	1546	1940	
+"B,4"	xxxxxxxxxxxxxxxxx	D3S1358	15	124.34	3491	19395	1976	
+"B,5"	xxxxxxxxxxxxxxxxx			132.72	299	1666	2050	
+"B,6"	xxxxxxxxxxxxxxxxx	D3S1358	18	136.76	3256	17955	2086	
+"B,7"	xxxxxxxxxxxxxxxxx	D3S1358	OL	150.22	384	2134	2206	
+"B,8"	xxxxxxxxxxxxxxxxx	TH01	4	154.23	348	2133	2242	
+"B,9"	xxxxxxxxxxxxxxxxx			158.01	104	850	2276	
+"B,10"	xxxxxxxxxxxxxxxxx	TH01	6	161.97	4611	25195	2312	
+"B,11"	xxxxxxxxxxxxxxxxx	TH01	7	166.02	4429	24464	2349	
+"B,12"	xxxxxxxxxxxxxxxxx	D21S11	OL	218.21	401	2343	2833	
+"B,13"	xxxxxxxxxxxxxxxxx			219.4	309	1801	2844	
+"B,14"	xxxxxxxxxxxxxxxxx	D21S11	30	223.38	2899	16363	2881	
+"B,15"	xxxxxxxxxxxxxxxxx	D21S11	OL	226.18	394	2174	2907	
+"B,16"	xxxxxxxxxxxxxxxxx	D21S11	31	227.36	2576	14874	2918	
+"B,17"	xxxxxxxxxxxxxxxxx	D21S11	32	231.34	123	917	2955	
+"B,18"	xxxxxxxxxxxxxxxxx			268.8	637	3975	3304	
+"B,19"	xxxxxxxxxxxxxxxxx			306.23	179	1084	3659	
+"B,20"	xxxxxxxxxxxxxxxxx	D18S51	15	310.04	2808	17555	3695	
+"B,21"	xxxxxxxxxxxxxxxxx			313.85	225	1368	3731	
+"B,22"	xxxxxxxxxxxxxxxxx	D18S51	17	317.67	2698	17016	3767	
+"B,23"	xxxxxxxxxxxxxxxxx	D18S51	OL	337.27	576	3787	3951	
+"B,24"	xxxxxxxxxxxxxxxxx			433.94	136	919	4839	
+"B,25"	xxxxxxxxxxxxxxxxx	Penta E	17	439.16	3423	25652	4885	
+"G,1"	xxxxxxxxxxxxxxxxx			70.86	109	1598	1522	
+"G,2"	xxxxxxxxxxxxxxxxx			77.61	134	1591	1578	
+"G,3"	xxxxxxxxxxxxxxxxx			122.4	190	1805	1959	
+"G,4"	xxxxxxxxxxxxxxxxx	D5S818	10	126.61	3589	21081	1996	
+"G,5"	xxxxxxxxxxxxxxxxx	D5S818	11	130.69	3281	18629	2032	
+"G,6"	xxxxxxxxxxxxxxxxx	D5S818	OL	148.32	119	942	2189	
+"G,7"	xxxxxxxxxxxxxxxxx	D5S818	OL	149.32	137	935	2198	
+"G,8"	xxxxxxxxxxxxxxxxx	D5S818	16	151.33	758	8198	2216	
+"G,9"	xxxxxxxxxxxxxxxxx	D5S818	OL	152.34	795	8924	2225	
+"G,10"	xxxxxxxxxxxxxxxxx	D5S818	OL	153.34	803	8122	2234	
+"G,11"	xxxxxxxxxxxxxxxxx			162.85	128	1263	2320	
+"G,12"	xxxxxxxxxxxxxxxxx			187.75	419	3146	2550	
+"G,13"	xxxxxxxxxxxxxxxxx	D13S317	12	191.73	6570	38745	2587	
+"G,14"	xxxxxxxxxxxxxxxxx	D13S317	13	195.71	151	1579	2624	
+"G,15"	xxxxxxxxxxxxxxxxx	D13S317	OL	196.89	101	528	2635	
+"G,16"	xxxxxxxxxxxxxxxxx	D13S317	OL	197.75	111	575	2643	
+"G,17"	xxxxxxxxxxxxxxxxx	D13S317	OL	208.62	134	740	2744	
+"G,18"	xxxxxxxxxxxxxxxxx	D7S820	OL	219.72	121	1101	2847	
+"G,19"	xxxxxxxxxxxxxxxxx	D7S820	8	220.48	114	912	2854	
+"G,20"	xxxxxxxxxxxxxxxxx			228.33	184	1270	2927	
+"G,21"	xxxxxxxxxxxxxxxxx	D7S820	11	232.3	3611	21547	2964	
+"G,22"	xxxxxxxxxxxxxxxxx	D7S820	12	236.38	3257	19892	3002	
+"G,23"	xxxxxxxxxxxxxxxxx			283.0	334	2072	3438	
+"G,24"	xxxxxxxxxxxxxxxxx	D16S539	11	286.99	5215	32551	3476	
+"G,25"	xxxxxxxxxxxxxxxxx			294.97	399	2469	3552	
+"G,26"	xxxxxxxxxxxxxxxxx	D16S539	14	298.95	4479	28598	3590	
+"G,27"	xxxxxxxxxxxxxxxxx			329.37	210	1234	3877	
+"G,28"	xxxxxxxxxxxxxxxxx	CSF1PO	10	333.42	4563	29064	3915	
+"G,29"	xxxxxxxxxxxxxxxxx	CSF1PO	11	337.37	2917	18291	3952	
+"G,30"	xxxxxxxxxxxxxxxxx	Penta D	12	412.77	2807	21102	4649	
+"G,31"	xxxxxxxxxxxxxxxxx	Penta D	13	417.49	2601	19620	4692	
+"Y,1"	xxxxxxxxxxxxxxxxx			97.55	103	891	1747	
+"Y,2"	xxxxxxxxxxxxxxxxx	AMEL	X	104.03	5337	30704	1802	
+"Y,3"	xxxxxxxxxxxxxxxxx			146.19	241	1300	2170	
+"Y,4"	xxxxxxxxxxxxxxxxx	vWA	17	150.22	3254	18072	2206	
+"Y,5"	xxxxxxxxxxxxxxxxx	vWA	18	154.23	2904	16074	2242	
+"Y,6"	xxxxxxxxxxxxxxxxx			214.33	181	1006	2797	
+"Y,7"	xxxxxxxxxxxxxxxxx	D8S1179	11	218.32	3095	17860	2834	
+"Y,8"	xxxxxxxxxxxxxxxxx			222.2	247	1458	2870	
+"Y,9"	xxxxxxxxxxxxxxxxx	D8S1179	13	226.18	2892	16866	2907	
+"Y,10"	xxxxxxxxxxxxxxxxx	D8S1179	OL	251.73	147	1213	3145	
+"Y,11"	xxxxxxxxxxxxxxxxx			264.73	101	613	3266	
+"Y,12"	xxxxxxxxxxxxxxxxx	TPOX	8	268.8	5461	32999	3304	
+"Y,13"	xxxxxxxxxxxxxxxxx			333.21	220	1156	3913	
+"Y,14"	xxxxxxxxxxxxxxxxx	FGA	20	337.27	4443	28396	3951	

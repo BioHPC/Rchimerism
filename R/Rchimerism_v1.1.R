@@ -27,6 +27,10 @@
 #' @importFrom DT datatable
 #' @importFrom DT formatStyle
 #' @importFrom DT styleEqual
+#' @importFrom shinyFiles getVolumes
+#' @importFrom shinyFiles shinyDirChoose
+#' @importFrom shinyFiles shinyDirButton
+#' @importFrom shinyFiles parseDirPath
 #' @importFrom tools file_ext
 #' @importFrom shiny reactive
 #' @importFrom shiny validate
@@ -55,18 +59,24 @@ ui <- shiny::shinyUI({
   # Sidebar with a slider input for number of bins
   shiny::fluidRow(
     shiny::column(3,
+       shiny::radioButtons("directory_mode", label = NULL,
+                           choices = list("Normal Mode" = 1, "Directory Mode" = 2),
+                           selected = 1),
+
        shiny::fileInput("markers", label = "Choose Marker File Input",
-                 accept=c("csv",
-                          ".csv")
+                        accept=c("csv",
+                                 ".csv")
        ),
+       shiny::radioButtons("donor_type", label = NULL,
+                           choices = list("Single Donor" = 1, "Double Donor" = 2),
+                           selected = 1),
+      shiny::conditionalPanel("input.directory_mode==1",
+
       shiny::fileInput("ddata", label = "Choose Donor Data Input",
                 accept=c("text/csv",
                          "text/comma-separated-values,text/plain",
                          ".csv", ".tsv")
                 ),
-      shiny::radioButtons("donor_type", label = NULL,
-                   choices = list("Single Donor" = 1, "Double Donor" = 2),
-                   selected = 1),
       shiny::conditionalPanel(condition = "input.donor_type == 2",
                        shiny::fileInput("d2data", label = "Choose Second Donor Data Input",
                                  accept=c("text/csv",
@@ -83,7 +93,14 @@ ui <- shiny::shinyUI({
                 accept=c("text/csv",
                          "text/comma-separated-values,text/plain",
                          ".csv", ".tsv")
+      )
       ),
+      shiny::conditionalPanel("input.directory_mode == 2",
+        shinyFiles::shinyDirButton('directory_select', 'Folder select', 'Please select a folder'),
+        shiny::br(),
+        shiny::br()
+      ),
+
       shiny::actionButton("run_locSD_button","Read input files")
 
     ),
@@ -198,8 +215,96 @@ ui <- shiny::shinyUI({
 })
 
 
-# Define server logic required to draw a histogram
 server <- function(input, output, session) {
+
+  volumes <- shinyFiles::getVolumes()
+  shinyFiles::shinyDirChoose(input, 'directory_select', roots = volumes, session=session)
+  dirname <- reactive({shinyFiles::parseDirPath(volumes, input$directory_select)})
+
+  test_file_path <- function(path,file_name) {
+      if (!file.exists(path)) {
+        t1 = paste("Missing ",file_name," input file at path:")
+        t2 = paste("<i>",trim_path(path),"</i>")
+        showModal(modalDialog(title=paste("Missing ",file_name," input file"),HTML(paste(t1,t2, sep='<br/>'))))
+        return(FALSE)
+      }
+  }
+  test_sdata_path <- function(path,file_name) {
+    if (!file.exists(path)) {
+      t1 = paste("Missing ",file_name," input file")
+      t2 = paste("<i>",path,"</i>")
+      showModal(modalDialog(title=paste("Missing ",file_name," input file"),HTML(paste(t1,t2, sep='<br/>'))))
+      return(FALSE)
+    }
+  }
+  #Remove ".." from path for readable error messages
+  trim_path <- function(path) {
+    pathl <- strsplit(path,"/")
+    path_sep <- unlist(pathl)
+    new_path_sep <- path_sep[-(length(path_sep)-1)]
+    new_path_sep <- new_path_sep[-(length(new_path_sep)-1)]
+    final_path <- paste(new_path_sep,collapse="/")
+    return(final_path)
+  }
+
+  validate_path <- function(path,file_name){
+    shiny::validate(
+    test_file_path(path,file_name)
+    )
+  }
+
+  initialize_dir_mode_vars <- function() {
+    #ddata and rdata should be in upper-upper folder
+    #sdata should be in folder similar to cd3 or cd33
+    #ex:
+    #patientID
+    #|___>ddata.txt
+    #|___>rdata.txt
+    #|___>Date
+    #     |___>cd3
+    #     |    |___>sdata.txt
+    #     |___>cd33
+    #          |___>sdata.txt
+    ddata_path <- paste0(dirname(),"/../../ddata.txt")
+    #d1data_path and d2data_path may not get used
+    d1data_path <- paste0(dirname(),"/../../d1data.txt")
+    d2data_path <- paste0(dirname(),"/../../d2data.txt")
+    rdata_path <- paste0(dirname(),"/../../rdata.txt")
+    sdata_path <- paste0(dirname(),"/sdata.txt")
+    #      testdata <- read.delim(testpath)
+    #      print(testdata)
+
+
+    if (input$donor_type == 1) {
+      validate_path(ddata_path,"ddata.txt")
+    }
+    else {
+      validate_path(d1data_path,"d1data.txt")
+      validate_path(d2data_path,"d2data.txt")
+    }
+
+    validate_path(rdata_path,"rdata.txt")
+
+    shiny::validate(
+      test_sdata_path(sdata_path,"sdata.txt")
+      )
+
+    print(read.delim(rdata_path))
+
+    output_vars <- c(ddata_path,d1data_path,d2data_path,rdata_path,sdata_path)
+
+    names(output_vars) <- c("ddata","d1data","d2data","rdata","sdata")
+
+    return(output_vars)
+  }
+
+  # observe({
+  #   #If user inputs file via button
+  #   if(!identical(dirname(), character(0))){
+  #     initialize_dir_mode_vars()
+  #   }
+  # })
+
 
   #"Read input data" button is pushed
   observeEvent(input$run_locSD_button, {
@@ -211,7 +316,7 @@ server <- function(input, output, session) {
     #Displays error dialog for invalid input file extension
     bad_input <- function(input_file,ext) {
       if (is.null(input_file)) {
-        showModal(modalDialog(title=paste("Missing input")))
+        showModal(modalDialog(title=paste("Missing input file")))
         return(FALSE)
       } else if (ext != tools::file_ext(input_file$datapath)){
         showModal(modalDialog(title=paste("Wrong File Extension for ","'",input_file[1],"'",
@@ -232,16 +337,51 @@ server <- function(input, output, session) {
       )
 
     }
-
-
+    #Check file extension
     check_input(input$markers,"csv")
-    check_input(input$ddata,"txt")
-    check_input(input$rdata,"txt")
-    check_input(input$sdata,"txt")
+
+    #Initialize input variables based on input mode
+    #(File input vs directory mode)
+    #File input mode
+    if (input$directory_mode == 1) {
+
+      check_input(input$ddata,"txt")
+      check_input(input$rdata,"txt")
+      check_input(input$sdata,"txt")
+
+      ddata <- read.delim(input$ddata$datapath)
+      if (input$donor_type == 2) {
+        check_input(input$d2data,"txt")
+        d2data <- read.delim(input$d2data$datapath)
+      }
+      rdata <- read.delim(input$rdata$datapath)
+      sdata <- read.delim(input$sdata$datapath)
+    }
+    #Directory mode
+    else {
+      dir_mode_vars <- initialize_dir_mode_vars()
+      #Single Donor case
+      #Note, validate_path() used previously, so if no
+      #ddata.txt, we know d1data.txt and d2data.txt
+      #exist otherwise the user will get an alert
+      if (input$donor_type == 1) {
+        ddata <- read.delim(dir_mode_vars[["ddata"]])
+      }
+      #Double donor
+      else {
+        ddata <- read.delim(dir_mode_vars[["d1data"]])
+        d2data <- read.delim(dir_mode_vars[["d2data"]])
+      }
+        rdata <- read.delim(dir_mode_vars[["rdata"]])
+        sdata <- read.delim(dir_mode_vars[["sdata"]])
+
+    }
+
 
     markers_csv <- strsplit(readLines(input$markers$datapath), ",")
     markers <- markers_csv[[1]]
     #markers = c('D3S1358','TH01','D21S11','D18S51','Penta E','D5S818','D13S317','D7S820','D16S539','CSF1PO','Penta D','vWA','D8S1179','TPOX','FGA')
+
 
     #Checks for error string output from loc/chi.R programs
     incoherent_input <- function(input){
@@ -277,13 +417,14 @@ server <- function(input, output, session) {
 
     #Double donor button was pressed
     if (input$donor_type == 2) {
-      assign("d2data",input$d2data,inherits=TRUE)
-      check_input(input$d2data,"txt")
+      #assign("d2data",input$d2data,inherits=TRUE)
 
       #source("R/locDD.R")
       #source("R/chiDD.R")
 
-      loc_dd_output <- locDD(input$ddata,input$d2data,input$rdata,markers)
+      #loc_dd_output <- locDD(input$ddata,input$d2data,input$rdata,markers)
+
+      loc_dd_output <- locDD(ddata,d2data,rdata,markers)
 
       is_coherent_input(loc_dd_output)
 
@@ -307,7 +448,7 @@ server <- function(input, output, session) {
       d2m <- loc_dd_output[[14]]
       rm <- loc_dd_output[[15]]
 
-      chi_dd_output <-  chiDD(input$sdata,markers,profile,
+      chi_dd_output <-  chiDD(sdata,markers,profile,
                              ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r)
 
       is_coherent_input(chi_dd_output)
@@ -324,8 +465,8 @@ server <- function(input, output, session) {
 #      source("R/locSD.R")
 #      source("R/chiSD.R")
 
-      loc_sd_output <- locSD(input$ddata,input$rdata,markers)
-
+      #loc_sd_output <- locSD(input$ddata,input$rdata,markers)
+      loc_sd_output <- locSD(ddata,rdata,markers)
       is_coherent_input(loc_sd_output)
 
 
@@ -340,7 +481,9 @@ server <- function(input, output, session) {
 #input$sdata,markers,rt,dm,rm
 #
 
-      chi_sd_output <- chiSD(input$sdata,markers,profile,rt,dt,d,r)
+      #chi_sd_output <- chiSD(input$sdata,markers,profile,rt,dt,d,r)
+
+      chi_sd_output <- chiSD(sdata,markers,profile,rt,dt,d,r)
       is_coherent_input(chi_sd_output)
       check_sample_data(chi_sd_output)
 

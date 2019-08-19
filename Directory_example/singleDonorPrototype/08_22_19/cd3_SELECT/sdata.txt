@@ -1,0 +1,54 @@
+Dye/Sample Peak	Sample File Name	Marker	Allele	Size	Height	Area	Data Point
+"B,1"	xxxxxxxxxxxxxxxxx	D3S1358	OL	104.24	137	859	1921
+"B,2"	xxxxxxxxxxxxxxxxx	D3S1358	OL	109.94	165	987	1971
+"B,3"	xxxxxxxxxxxxxxxxx	D3S1358	13	116.06	588	3680	2025
+"B,4"	xxxxxxxxxxxxxxxxx	D3S1358	14	120.33	663	4120	2063
+"B,5"	xxxxxxxxxxxxxxxxx	D3S1358	15	124.28	623	3868	2099
+"B,6"	xxxxxxxxxxxxxxxxx	D3S1358	16	128.54	519	3211	2138
+"B,7"	xxxxxxxxxxxxxxxxx	D3S1358	OL	146.31	315	1917	2302
+"B,8"	xxxxxxxxxxxxxxxxx	TH01	6	162.01	1438	8603	2448
+"B,9"	xxxxxxxxxxxxxxxxx	TH01	7	166.01	759	4477	2486
+"B,10"	xxxxxxxxxxxxxxxxx	TH01	9	173.97	680	4038	2562
+"B,11"	xxxxxxxxxxxxxxxxx	D21S11	28	215.32	1432	8713	2959
+"B,12"	xxxxxxxxxxxxxxxxx	D21S11	30	223.33	468	3055	3036
+"B,13"	xxxxxxxxxxxxxxxxx	D21S11	OL	226.35	210	1322	3065
+"B,14"	xxxxxxxxxxxxxxxxx	D21S11	OL	230.2	145	898	3102
+"B,15"	xxxxxxxxxxxxxxxxx	D18S51	OL	280.63	260	1732	3590
+"B,16"	xxxxxxxxxxxxxxxxx	D18S51	13	302.34	511	3443	3803
+"B,17"	xxxxxxxxxxxxxxxxx			321.11	118	806	3987
+"B,18"	xxxxxxxxxxxxxxxxx	D18S51	19	324.9	1305	9114	4024
+"B,19"	xxxxxxxxxxxxxxxxx	D18S51	OL	341.57	125	844	4185
+"B,20"	xxxxxxxxxxxxxxxxx	D18S51	OL	349.9	116	792	4265
+"B,21"	xxxxxxxxxxxxxxxxx	Penta E	7	387.57	492	3737	4626
+"B,22"	xxxxxxxxxxxxxxxxx	Penta E	8	392.66	830	6387	4674
+"B,23"	xxxxxxxxxxxxxxxxx	Penta E	10	403.04	375	2943	4772
+"G,1"	xxxxxxxxxxxxxxxxx			105.73	291	4559	1934
+"G,2"	xxxxxxxxxxxxxxxxx			107.55	297	8609	1950
+"G,3"	xxxxxxxxxxxxxxxxx			130.82	106	717	2159
+"G,4"	xxxxxxxxxxxxxxxxx	D5S818	12	135.05	1692	11266	2198
+"G,5"	xxxxxxxxxxxxxxxxx	D5S818	13	139.14	554	3641	2236
+"G,6"	xxxxxxxxxxxxxxxxx	D13S317	12	191.88	768	5015	2734
+"G,7"	xxxxxxxxxxxxxxxxx	D13S317	13	195.84	1333	8130	2772
+"G,8"	xxxxxxxxxxxxxxxxx	D13S317	14	199.79	637	3861	2810
+"G,9"	xxxxxxxxxxxxxxxxx	D7S820	8	220.42	712	4890	3008
+"G,10"	xxxxxxxxxxxxxxxxx	D7S820	10	228.43	1773	17010	3085
+"G,11"	xxxxxxxxxxxxxxxxx	D7S820	13	240.36	574	3884	3200
+"G,12"	xxxxxxxxxxxxxxxxx			278.99	110	919	3574
+"G,13"	xxxxxxxxxxxxxxxxx	D16S539	10	283.08	1888	12781	3614
+"G,14"	xxxxxxxxxxxxxxxxx			287.06	149	1000	3653
+"G,15"	xxxxxxxxxxxxxxxxx	D16S539	11	291.14	1956	13456	3693
+"G,16"	xxxxxxxxxxxxxxxxx			333.28	168	1129	4105
+"G,17"	xxxxxxxxxxxxxxxxx	CSF1PO	11	337.32	3126	21617	4144
+"G,18"	xxxxxxxxxxxxxxxxx	Penta D	9	398.4	1942	15641	4728
+"G,19"	xxxxxxxxxxxxxxxxx	Penta D	10	403.15	567	4593	4773
+"Y,1"	xxxxxxxxxxxxxxxxx	AMEL	X	104.24	1194	7483	1921
+"Y,2"	xxxxxxxxxxxxxxxxx	AMEL	Y	109.94	1418	8912	1971
+"Y,3"	xxxxxxxxxxxxxxxxx			142.29	163	918	2265
+"Y,4"	xxxxxxxxxxxxxxxxx	vWA	16	146.31	2500	14797	2302
+"Y,5"	xxxxxxxxxxxxxxxxx			222.4	122	780	3027
+"Y,6"	xxxxxxxxxxxxxxxxx	D8S1179	13	226.35	1593	10011	3065
+"Y,7"	xxxxxxxxxxxxxxxxx	D8S1179	14	230.3	1071	6871	3103
+"Y,8"	xxxxxxxxxxxxxxxxx	TPOX	11	280.73	2112	14239	3591
+"Y,9"	xxxxxxxxxxxxxxxxx			337.32	128	964	4144
+"Y,10"	xxxxxxxxxxxxxxxxx	FGA	21	341.57	988	6864	4185
+"Y,11"	xxxxxxxxxxxxxxxxx	FGA	23	349.9	908	6396	4265

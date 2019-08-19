@@ -17,7 +17,8 @@
 chiDD <- function(sdata,markers,profile,ru,rt,rnn,d1nn,d2nn,d1u,d2u,d1t,d2t,r) {
 print(getwd(),quote=F);
 
-sData <- read.delim(sdata$datapath);
+#sData <- read.delim(sdata$datapath);
+sData <- sdata
 
 #Function to handle invalid data text files
 coherent_input <- function(any_input) {
