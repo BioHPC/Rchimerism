@@ -51,6 +51,9 @@ st[,] = 0;
 #print(s[!(s[,2] %in% colnames(st)),]);
 #browser()
 
+#check point: remove loci not specified in user markers csv file
+s = s[(s[,1] %in% rownames(st)),];
+
 #Handles noisy sample data, outputs table of possible false calls
 if (nrow(s[!(s[,2] %in% colnames(st)),]) != 0) {
   false_calls <- s[!(s[,2] %in% colnames(st)),]
