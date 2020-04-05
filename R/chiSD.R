@@ -47,11 +47,17 @@ st =  rt;
 st[,] = 0
 
 #check point: any locus present in sample but not in recipient/donor
-print("The following alleles are possible false calls by ABI GeneAnalyzer",quote = F)
-print(s[!(s[,2] %in% colnames(st)),]);
+# print("The following alleles are possible false calls by ABI GeneAnalyzer",quote = F)
+# print(s[!(s[,2] %in% colnames(st)),]);
 
 #check point: remove loci not specified in user markers csv file
 s = s[(s[,1] %in% rownames(st)),];
+
+#Handles noisy sample data, outputs table of possible false calls
+if (nrow(s[!(s[,2] %in% colnames(st)),]) != 0) {
+  false_calls <- s[!(s[,2] %in% colnames(st)),]
+  return(false_calls)
+}
 
 #check point: donor and receipient matrix
 #print("Donor Allele Matrix", quote = F);
@@ -59,7 +65,7 @@ s = s[(s[,1] %in% rownames(st)),];
 #print("Receipient Allele Matrix", quote = F);
 #print(rm);
 
-#Handles noisy sample data, outputs table of possible false calls
+
 st[as.matrix(s[,1:2])] = 1;
 st[(dt+rt)==0 & st!=0]= 999; # the alleles not in donor or recipient
 sa = rt;
